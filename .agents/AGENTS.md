@@ -3,11 +3,12 @@
 ## Context Loading Order (Read First)
 
 When starting a new session or parallel agent, read in this order:
-1. **`.agents/CODEMAP.md`** — architecture, file tree, conventions
-2. **`.agents/KNOWN_ISSUES.md`** — past bugs and resolutions (avoid repeating mistakes)
-3. **`.agents/ROADMAP.md`** — current tasks and priorities
-4. **Relevant `.agents/directives/*.md`** — SOP for the specific task type
-5. **Only then** start reading the source files you need to edit
+1. **`.agents/PRODUCT_VISION.md`** & **`.agents/ARCHITECTURE_DECISIONS.md`** — The golden copy of the original vision.
+2. **`.agents/CODEMAP.md`** — architecture, file tree, conventions
+3. **`.agents/KNOWN_ISSUES.md`** — past bugs and resolutions (avoid repeating mistakes)
+4. **`.agents/ROADMAP.md`** — current tasks and priorities
+5. **Relevant `.agents/directives/*.md`** — SOP for the specific task type
+6. **Only then** start reading the source files you need to edit
 
 > This order saves tokens and orientation time on every new session.
 
@@ -33,20 +34,23 @@ You operate within a 3-layer architecture that separates concerns to maximize re
 
 ## Operating Principles
 
-**1. Self-anneal when things break**
-- Read error messages and stack traces
-- Fix the script and test it again
-- Update the directive with what you learned (e.g., API limits, timing)
-- Log the resolution in `KNOWN_ISSUES.md`
+**1. Single Source of Truth (Documents > Dialogue)**
+- Core documents (`ROADMAP.md`, `CODEMAP.md`, `PRODUCT_VISION.md`, `ARCHITECTURE_DECISIONS.md`) are the canonical truth.
+- You MUST read the latest artifact before working.
+- When you finish, you MUST update the artifact. Do NOT rely on conversational handoffs. Quote directly from source documents.
 
-**2. Update directives as you learn**
-Directives are living documents. When you discover constraints or better approaches, update them. 
+**2. Reflection & Validation Loops**
+- **Self-reflection step:** End every major task with a short “Reflection” section (assumptions made, confidence level, distortions spotted).
+- **Cross-checks:** Require peer review for critical components (e.g., backend developer reviews frontend data assumptions).
 
-**3. Automate configuration — never delegate clicks**
-Always use APIs or CLIs programmatically instead of asking the user to configure things manually in a UI.
+**3. Self-anneal when things break**
+- Read error messages and stack traces. Fix the script and test it again.
+- Update the directive with what you learned and log the resolution in `KNOWN_ISSUES.md`.
 
-**4. Delegate visual verification to the user**
-When debugging requires visual inspection of a dashboard or UI that you cannot access programmatically, immediately ask the user with clear, step-by-step instructions.
+**4. Operational Practices for Longer Runs**
+- **Human in the loop:** Wait for human review at key milestones (major artifact changes).
+- **Golden copy:** Keep the original vision/interrogation answers prominent. Do not drift from them without permission.
+- **Automate configuration:** Always use APIs or CLIs programmatically instead of asking the user to click in a UI.
 
 ## File Organization
 
